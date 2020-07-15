@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.scss";
-import PropTypes from "prop-types";
+import PropTypes, { checkPropTypes } from "prop-types";
 
 const Currencies = (props) => {
   return (
@@ -8,7 +8,13 @@ const Currencies = (props) => {
       <div className="currencies-title">Currencies</div>
       <ul className="currencies-list">
         {props.list.map((objetCurrency) => (
-          <li key={objetCurrency.name} className="currency">
+          <li
+            key={objetCurrency.name}
+            className="currency"
+            onClick={() => {
+              props.onCurrencyClick(objetCurrency);
+            }} // Au cclic j'execute la fonction RETURNED par handleClick
+          >
             {objetCurrency.name}
           </li>
         ))}
