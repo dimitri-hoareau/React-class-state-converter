@@ -20,8 +20,8 @@ const Currencies = (props) => {
 Currencies.propTypes = {
   list: PropTypes.arrayOf(
     PropTypes.shape({
-      name: isRequired,
-    }).isRequired
+      name: PropTypes.string.isRequired,
+    })
   ).isRequired,
 };
 
