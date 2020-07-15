@@ -6,12 +6,14 @@ import Amount from "../Amount";
 
 import "./styles.css";
 
+import data from "../../data/currencies";
+
 // == Composant
 const App = () => (
   <div className="app">
-    <Header />
-    <Currencies />
-    <Amount />
+    <Header amount={1} />
+    <Currencies list={data} />
+    <Amount value={1.09} currency="United States Dollar" />
   </div>
 );
 

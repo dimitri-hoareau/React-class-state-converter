@@ -1,28 +1,16 @@
 import React from "react";
 import "./style.scss";
 
-const Currencies = () => {
+const Currencies = (props) => {
   return (
     <div className="currencies">
       <div className="currencies-title">Currencies</div>
       <ul className="currencies-list">
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
-        <li className="currency">USD</li>
+        {props.list.map((objetCurrency) => (
+          <li key={objetCurrency.name} className="currency">
+            {objetCurrency.name}
+          </li>
+        ))}
       </ul>
     </div>
   );
