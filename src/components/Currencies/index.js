@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.scss";
+import PropTypes from "prop-types";
 
 const Currencies = (props) => {
   return (
@@ -14,6 +15,14 @@ const Currencies = (props) => {
       </ul>
     </div>
   );
+};
+
+Currencies.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: isRequired,
+    }).isRequired
+  ).isRequired,
 };
 
 export default Currencies;
