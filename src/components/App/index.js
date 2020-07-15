@@ -61,14 +61,5 @@ class App extends React.Component {
   }
 }
 
-// == Composant
-// const App = () => (
-//   <div className="app">
-//     <Header amount={1} />
-//     <Currencies list={data} />
-//     <Amount value={1.09} currency="United States Dollar" />
-//   </div>
-// );
-
 // == Export
 export default App;
