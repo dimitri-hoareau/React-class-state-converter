@@ -6,22 +6,20 @@ const Currencies = (props) => {
   const { list, onCurrencyClick, search, onFilterChange } = props;
   return (
     <div className="currencies">
-      <div className="currencies-title">
-        <input
-          type="text"
-          placeholder="Filter..."
-          className="currencies-search"
-          value={search}
-          onChange={(evt) => {
-            const content = evt.target.value;
-            // Je voudrais changer dans mon state
-            // cla propriété "search" pour qu'elle
-            // contienne ce qui a été tapé
-            console.log(content);
-            onFilterChange(content);
-          }}
-        />
-      </div>
+      <input
+        type="text"
+        placeholder="Filter..."
+        className="currencies-search"
+        value={search}
+        onChange={(evt) => {
+          const content = evt.target.value;
+          // Je voudrais changer dans mon state
+          // cla propriété "search" pour qu'elle
+          // contienne ce qui a été tapé
+          console.log(content);
+          onFilterChange(content);
+        }}
+      />
       <ul className="currencies-list">
         {list.map((objetCurrency) => (
           <li

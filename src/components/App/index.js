@@ -9,6 +9,26 @@ import "./styles.css";
 
 import data from "../../data/currencies";
 
+/*
+
+  Objectif: Manipuler les lifecycles
+  
+  Je souhaiterais, dés que mon composant App
+  est rendu pour la première fois, lancer un setInterval
+  d'une fonction qui fait un console.log("coucou"), toutes les secondes.
+
+  Evidemment, je ne veux pas que ce console.log continue
+  si mon app est démontée
+
+  Trouver une solution :grin:
+
+  BONUS
+
+  Changer le titre de la page
+  En fonction de la devise sélectionnée
+
+*/
+
 class App extends React.Component {
   // constructor(props) {
   //   super(props);
@@ -34,21 +54,29 @@ class App extends React.Component {
     },
   };
 
+  updatePageTitle = () => {
+    document.title = `Euro to ${this.state.devise.name} converter`;
+  };
+
   componentDidMount() {
     console.log("Le composant App est monté");
     // Juste pour l'exemple, ici je pourrais
     // lancer une fonction, qui sera répétée toutes les secondes
     // avec un setInterval
+    this.updatePageTitle();
+    this.interval = setInterval(() => {}, 1000);
   }
 
   componentDidUpdate() {
     console.log("Le composant a été mis à jour dans le dom");
+    this.updatePageTitle();
   }
 
   componentWillUnmount() {
     console.log("Je peux faire une derniere action avant de disparaitre");
     // Ici je pourrais arrêter le setIntervall que j'ai lancé
     // pour faire mes requêtes toutes les secondes
+    clearInterval(this.interval);
   }
 
   getCurrencies = () => {
@@ -93,6 +121,12 @@ class App extends React.Component {
     });
   };
 
+  changeBaseAmount = (number) => {
+    this.setState({
+      baseAmount: number,
+    });
+  };
+
   render() {
     console.log("Je rend le composant");
     const { open, devise, baseAmount, search } = this.state;
@@ -101,7 +135,7 @@ class App extends React.Component {
 
     return (
       <div className="app">
-        <Header amount={baseAmount} />
+        <Header amount={baseAmount} onChange={this.changeBaseAmount} />
         <Toggler open={open} toggle={this.toggle} />
         {open && (
           <Currencies
