@@ -9,6 +9,18 @@
     margin-top: vars.$gutter;
     font-weight: bold;
   }
+
+  &-search {
+    padding: vars.$gutter;
+    margin-top: vars.$gutter;
+    width: 100%;
+    border: none;
+    color: vars.$color;
+    font: inherit;
+    &::placeholder {
+      color: vars.$color-alt;
+    }
+  }
 }
 
 .currency {

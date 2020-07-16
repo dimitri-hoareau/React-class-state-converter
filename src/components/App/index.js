@@ -21,12 +21,18 @@ class App extends React.Component {
 
   state = {
     open: true,
-    search: "toto",
+    search: "dollar",
     baseAmount: 1,
     devise: {
       name: "United States Dollar",
       rate: 1.09,
     },
+  };
+
+  changeSearch = (text) => {
+    this.setState({
+      search: text,
+    });
   };
 
   toggle = () => {
@@ -43,7 +49,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { open, devise, baseAmount } = this.state;
+    const { open, devise, baseAmount, search } = this.state;
 
     const roundedConversion = Math.round(baseAmount * devise.rate * 100) / 100;
 
@@ -52,7 +58,12 @@ class App extends React.Component {
         <Header amount={baseAmount} />
         <Toggler open={open} toggle={this.toggle} />
         {open && (
-          <Currencies list={data} onCurrencyClick={this.setSelectedCurrency} />
+          <Currencies
+            search={search}
+            onFilterChange={this.changeSearch}
+            list={data}
+            onCurrencyClick={this.setSelectedCurrency}
+          />
         )}
 
         <Amount value={roundedConversion} currency={devise.name} />

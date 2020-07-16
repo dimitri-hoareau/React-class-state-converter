@@ -3,16 +3,32 @@ import "./style.scss";
 import PropTypes, { checkPropTypes } from "prop-types";
 
 const Currencies = (props) => {
+  const { list, onCurrencyClick, search, onFilterChange } = props;
   return (
     <div className="currencies">
-      <div className="currencies-title">Currencies</div>
+      <div className="currencies-title">
+        <input
+          type="text"
+          placeholder="Filter..."
+          className="currencies-search"
+          value={search}
+          onChange={(evt) => {
+            const content = evt.target.value;
+            // Je voudrais changer dans mon state
+            // cla propriété "search" pour qu'elle
+            // contienne ce qui a été tapé
+            console.log(content);
+            onFilterChange(content);
+          }}
+        />
+      </div>
       <ul className="currencies-list">
-        {props.list.map((objetCurrency) => (
+        {list.map((objetCurrency) => (
           <li
             key={objetCurrency.name}
             className="currency"
             onClick={() => {
-              props.onCurrencyClick(objetCurrency);
+              onCurrencyClick(objetCurrency);
             }} // Au cclic j'execute la fonction RETURNED par handleClick
           >
             {objetCurrency.name}
