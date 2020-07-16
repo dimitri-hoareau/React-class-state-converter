@@ -21,6 +21,7 @@ class App extends React.Component {
 
   state = {
     open: true,
+    search: "toto",
     baseAmount: 1,
     devise: {
       name: "United States Dollar",
@@ -42,7 +43,6 @@ class App extends React.Component {
   };
 
   render() {
-    const { toggle } = this;
     const { open, devise, baseAmount } = this.state;
 
     const roundedConversion = Math.round(baseAmount * devise.rate * 100) / 100;
@@ -50,7 +50,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <Header amount={baseAmount} />
-        <Toggler open={open} toggle={toggle} />
+        <Toggler open={open} toggle={this.toggle} />
         {open && (
           <Currencies list={data} onCurrencyClick={this.setSelectedCurrency} />
         )}
