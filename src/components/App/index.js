@@ -29,6 +29,29 @@ class App extends React.Component {
     },
   };
 
+  getCurrencies = () => {
+    const { search } = this.state;
+    const list = data;
+
+    // Si search est vide
+    // Renvoyer la liste complète
+    if (search.length === 0) {
+      return list;
+    }
+    // Sinon
+    // Renvoyer le tableau de devises filtré
+    // pour ne conserver que celles dont le
+    // .name inclue search
+    return list.filter((deviseObject) => {
+      // Je mets en minuscule le nom de la devise
+      const deviseName = deviseObject.name.toLowerCase();
+      // Je mets en minuscule le texte recherché
+      const lowerSearch = search.toLowerCase();
+      // Je renvoie true ou false si le nom de devise inclue le terme recherché
+      return deviseName.includes(lowerSearch);
+    });
+  };
+
   changeSearch = (text) => {
     this.setState({
       search: text,
@@ -61,7 +84,7 @@ class App extends React.Component {
           <Currencies
             search={search}
             onFilterChange={this.changeSearch}
-            list={data}
+            list={this.getCurrencies()}
             onCurrencyClick={this.setSelectedCurrency}
           />
         )}
