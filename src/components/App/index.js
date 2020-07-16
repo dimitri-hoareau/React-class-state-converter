@@ -19,15 +19,37 @@ class App extends React.Component {
   //   };
   // }
 
+  constructor(props) {
+    super(props);
+    console.log("Ici je fais ce que je veux AVANT le rendu de mon composant");
+  }
+
   state = {
     open: true,
-    search: "dollar",
+    search: "",
     baseAmount: 1,
     devise: {
       name: "United States Dollar",
       rate: 1.09,
     },
   };
+
+  componentDidMount() {
+    console.log("Le composant App est monté");
+    // Juste pour l'exemple, ici je pourrais
+    // lancer une fonction, qui sera répétée toutes les secondes
+    // avec un setInterval
+  }
+
+  componentDidUpdate() {
+    console.log("Le composant a été mis à jour dans le dom");
+  }
+
+  componentWillUnmount() {
+    console.log("Je peux faire une derniere action avant de disparaitre");
+    // Ici je pourrais arrêter le setIntervall que j'ai lancé
+    // pour faire mes requêtes toutes les secondes
+  }
 
   getCurrencies = () => {
     const { search } = this.state;
@@ -72,6 +94,7 @@ class App extends React.Component {
   };
 
   render() {
+    console.log("Je rend le composant");
     const { open, devise, baseAmount, search } = this.state;
 
     const roundedConversion = Math.round(baseAmount * devise.rate * 100) / 100;
